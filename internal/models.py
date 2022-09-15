@@ -513,14 +513,17 @@ class MLP(nn.Module):
         # Predict diffuse color.
         if self.use_diffuse_color:
           raw_rgb_diffuse = dense_layer(self.num_rgb_channels)(x)
+          raw_rgb_diffuse = raw_rgb_diffuse[...,::-1].copy()
 
         if self.use_specular_tint:
           tint = nn.sigmoid(dense_layer(3)(x))
+          #tint = jnp.zeros_like(tint)
 
         if self.enable_pred_roughness:
           raw_roughness = dense_layer(1)(x)
           roughness = (
               self.roughness_activation(raw_roughness + self.roughness_bias))
+          #roughness = jnp.ones_like(roughness)
 
         # Output of the first part of MLP.
         if self.bottleneck_width > 0:

@@ -1,6 +1,6 @@
 Config.dataset_loader = 'blender'
 Config.batching = 'single_image'
-Config.near = 2
+Config.near = 0
 Config.far = 6
 Config.eval_render_interval = 5
 Config.compute_normal_metrics = True
@@ -40,5 +40,6 @@ NerfMLP.use_diffuse_color = True
 NerfMLP.use_specular_tint = True
 NerfMLP.use_n_dot_v = True
 NerfMLP.bottleneck_width = 128
+NerfMLP.bottleneck_noise = 0.1
 NerfMLP.density_bias = 0.5
 NerfMLP.max_deg_point = 16
